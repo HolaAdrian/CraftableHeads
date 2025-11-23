@@ -32,13 +32,20 @@ Edit your config.yml to define your custom crafting recipe and message settings.
 /changehead <textureURL>
 Changes the texture of the head you are currently holding.
 
+Permission required:
+customhead.change
+
+Players without this permission will not be able to use the command.
+
 📁 Source Code
 
 You can find the full source code in the Code folder.
 
+🚨 Important
 
+Textures must follow this format:
+http://textures.minecraft.net/texture/76fdd4b13d54f6c91dd5fa765ec93dd9458b19f8aa34eeb5c80f455b119f278
 
-
---IMPORTANT--
-Textures need to be in this style: http://textures.minecraft.net/texture/76fdd4b13d54f6c91dd5fa765ec93dd9458b19f8aa34eeb5c80f455b119f278
-Textures like this can be found here: https://minecraft-heads.com/player-heads
+You can find valid texture URLs here:
+https://minecraft-heads.com/custom-heads/
+<img width="1905" height="880" alt="grafik" src="https://github.com/user-attachments/assets/81baa97f-67b3-4a00-9225-080e51505e1c" />
