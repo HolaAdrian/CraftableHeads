@@ -1,0 +1,13 @@
+head-recipe:
+  enabled: true
+
+  # 3 Zeilen à 3 Zeichen
+  shape:
+    - "AAA"
+    - "ABA"
+    - "AAA"
+
+  # Zuordnung der Buchstaben zu Items
+  ingredients:
+    A: STONE
+    B: DIAMOND

@@ -1,0 +1,9 @@
+name: CraftableHeads
+version: '1.0'
+main: de.adrian.craftableHeads.CraftableHeads
+api-version: '1.21'
+authors: [ hiadrian ]
+description: Craftable Heads v1.0
+commands:
+  changehead:
+    description: Change the heads Skin
