@@ -35,3 +35,10 @@ Changes the texture of the head you are currently holding.
 📁 Source Code
 
 You can find the full source code in the Code folder.
+
+
+
+
+--IMPORTANT--
+Textures need to be in this style: http://textures.minecraft.net/texture/76fdd4b13d54f6c91dd5fa765ec93dd9458b19f8aa34eeb5c80f455b119f278
+Textures like this can be found here: https://minecraft-heads.com/player-heads
