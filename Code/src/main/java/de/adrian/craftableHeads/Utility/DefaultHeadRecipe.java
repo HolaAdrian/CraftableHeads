@@ -72,9 +72,11 @@ public class DefaultHeadRecipe {
             for (String line : loreCfg) {
                 lore.add(ChatColor.translateAlternateColorCodes('&', line));
             }
-        };
+        }
         meta.setLore(lore);
-        meta.setMaxStackSize(1);
+
+        // IMPORTANT CHANGE: allow normal stack size (64) instead of forcing 1
+        meta.setMaxStackSize(64);
 
         item.setItemMeta(meta);
 
