@@ -29,23 +29,27 @@ public class Creator {
         return profile;
     }
 
-    public static ItemStack Head(Integer amount, String link){
+    public static ItemStack Head(Integer amount, PlayerProfile profile) {
         ItemStack b = new ItemStack(Material.PLAYER_HEAD, amount);
-        SkullMeta SkullMeta = (SkullMeta) b.getItemMeta();
-        //PlayerProfile profile = Creator.getProfile("http://textures.minecraft.net/texture/76fdd4b13d54f6c91dd5fa765ec93dd9458b19f8aa34eeb5c80f455b119f278");
-        PlayerProfile profile = Creator.getProfile(link);
-        SkullMeta.setOwnerProfile(profile);
+        SkullMeta skullMeta = (SkullMeta) b.getItemMeta();
+        skullMeta.setOwnerProfile(profile);
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add("");
         lore.add("This is a customised head!");
         lore.add("");
-        SkullMeta.setLore(lore);
-        SkullMeta.setDisplayName(ChatColor.GOLD + "CUSTOM HEAD");
-        SkullMeta.setCustomModelData(23);
-        SkullMeta.setMaxStackSize(1);
-        b.setItemMeta(SkullMeta);
+        skullMeta.setLore(lore);
+        skullMeta.setDisplayName(ChatColor.GOLD + "CUSTOM HEAD");
+        skullMeta.setCustomModelData(23);
+        skullMeta.setMaxStackSize(1);
+
+        b.setItemMeta(skullMeta);
         return b;
     }
 
+
+    public static ItemStack Head(Integer amount, String link){
+        PlayerProfile profile = Creator.getProfile(link);
+        return Head(amount, profile);
+    }
 }

@@ -1,6 +1,7 @@
 package de.adrian.craftableHeads.Commands;
 
 import de.adrian.craftableHeads.Utility.Creator;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -32,7 +33,7 @@ public class CustomiceHead implements CommandExecutor {
         Player p = (Player) commandSender;
 
         if (strings.length != 1) {
-            commandSender.sendMessage(ChatColor.RED + "Syntax: /changehead <LINK>");
+            commandSender.sendMessage(ChatColor.RED + "Syntax: /changehead <LINK|PLAYERNAME>");
             return false;
         }
 
@@ -49,42 +50,43 @@ public class CustomiceHead implements CommandExecutor {
             return false;
         }
 
-        // If the player holds more than 1 head, we will need an extra inventory slot
-        // because the custom head is non-stackable.
         if (amount > 1 && p.getInventory().firstEmpty() == -1) {
             p.sendMessage(ChatColor.RED + "Your inventory is full. Please clear at least one slot before changing the head.");
             return false;
         }
 
-        String link = strings[0];
+        String input = strings[0];
 
         PlayerProfile profile;
         try {
-            profile = Creator.getProfile(link);
+            if (isLikelyUrl(input)) {
+                profile = Creator.getProfile(input);
+            } else {
+                profile = Bukkit.createPlayerProfile(input);
+            }
         } catch (Exception e) {
-            p.sendMessage(ChatColor.RED + "This texture link is invalid or unreachable.");
+            p.sendMessage(ChatColor.RED + "This texture link or player name is invalid or unreachable.");
             return false;
         }
 
         System.out.println(profile);
 
-        // Create the custom non-stackable head
-        ItemStack customHead = Creator.Head(1, link);
+        ItemStack customHead = Creator.Head(1, profile);
 
         if (amount > 1) {
-            // Case: stack > 1
-            // 1) Decrease the stack in hand by 1 (unchanged heads remain stackable)
             inHand.setAmount(amount - 1);
 
-            // 2) Add the custom head to the inventory (separate slot)
             p.getInventory().addItem(customHead);
         } else {
-            // Case: exactly 1 head in hand
-            // Just replace it with the custom head, no extra slot needed
             p.getInventory().setItemInMainHand(customHead);
         }
 
         p.sendMessage(ChatColor.GREEN + "Your head's skin was changed.");
         return true;
+    }
+
+    private boolean isLikelyUrl(String input) {
+        String lower = input.toLowerCase();
+        return lower.startsWith("http://") || lower.startsWith("https://");
     }
 }
